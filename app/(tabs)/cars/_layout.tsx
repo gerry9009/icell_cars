@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 
-const RootLayout = () => {
+const CarsLayout = () => {
   return <Stack />;
 };
 
-export default RootLayout;
+export default CarsLayout;
