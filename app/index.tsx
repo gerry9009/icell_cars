@@ -1,16 +1,18 @@
-import { Text, View } from "react-native";
+import { Button, Layout } from "@/components";
+import { Text } from "react-native";
 
 const Index = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <Layout headerProps={{ title: "Index Screen" }}>
       <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+      <Button label="Press me" onPress={() => alert("Button pressed!")} />
+      <Button
+        label="Press me"
+        onPress={() => alert("Button pressed!")}
+        type="link"
+      />
+      <Button label="Press me" onPress={() => alert("Button pressed!")} />
+    </Layout>
   );
 };
 
