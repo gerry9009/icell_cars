@@ -1,7 +1,7 @@
 import { ErrorScreen } from "@/screens";
 
 export const ErrorContainer = () => {
-  return <ErrorScreen />;
+  return <ErrorScreen handleBack={() => {}} />;
 };
 
 export default ErrorContainer;

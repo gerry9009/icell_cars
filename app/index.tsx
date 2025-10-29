@@ -1,18 +1,18 @@
-import { Button, Layout } from "@/components";
-import { Text } from "react-native";
+import { Redirect } from "expo-router";
 
 const Index = () => {
   return (
-    <Layout headerProps={{ title: "Index Screen" }}>
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-      <Button label="Press me" onPress={() => alert("Button pressed!")} />
-      <Button
-        label="Press me"
-        onPress={() => alert("Button pressed!")}
-        type="link"
-      />
-      <Button label="Press me" onPress={() => alert("Button pressed!")} />
-    </Layout>
+    <Redirect href="/auth/login" />
+    // <Layout headerProps={{ title: "Index Screen" }}>
+    //   <Text>Edit app/index.tsx to edit this screen.</Text>
+    //   <Button label="Press me" onPress={() => alert("Button pressed!")} />
+    //   <Button
+    //     label="Press me"
+    //     onPress={() => alert("Button pressed!")}
+    //     type="link"
+    //   />
+    //   <Button label="Press me" onPress={() => alert("Button pressed!")} />
+    // </Layout>
   );
 };
 
