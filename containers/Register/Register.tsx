@@ -1,36 +1,71 @@
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { RegisterScreen } from "@/screens";
+import {
+  register,
+  selectAuthError,
+  selectAuthLoading,
+  selectAuthUser,
+} from "@/store/auth";
 import { router } from "expo-router";
-import { useCallback, useState } from "react";
-import { config } from "./Register.config";
+import { useCallback, useEffect, useState } from "react";
+import { Alert } from "react-native";
+import { config as baseConfig } from "./Register.config";
+import { handleNavigationButton } from "./Register.utils";
+import { validateRegister } from "./register.validation";
 
 export const RegisterContainer = () => {
-  const [loading, setLoading] = useState(false);
-  const [values, setValues] = useState<Record<string, string>>({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectAuthUser);
+  const loading = useAppSelector(selectAuthLoading);
+  const serverError = useAppSelector(selectAuthError);
+
+  const [values, setValues] = useState<Record<string, string>>({});
+  const [localErrors, setLocalErrors] = useState<
+    Record<string, string | undefined>
+  >({});
+
+  useEffect(() => {
+    if (user) {
+      router.replace("/(tabs)/home");
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (serverError) {
+      router.replace("/error");
+    }
+  }, [serverError]);
+
+  const config = baseConfig.map((config) => ({
+    ...config,
+    error: localErrors[config.name],
+  }));
 
   const handleFormChange = useCallback((formData: Record<string, string>) => {
     setValues((prev) => ({ ...prev, ...formData }));
   }, []);
 
-  const handleSubmit = useCallback(() => {
-    if (values.password !== values.confirmPassword) {
-      return;
+  const handleSubmit = useCallback(async () => {
+    const errors = validateRegister(values);
+
+    setLocalErrors(errors);
+
+    if (Object.keys(errors).length > 0) return;
+
+    const email = (values.email || "").trim();
+    const password = values.password || "";
+
+    try {
+      await dispatch(register({ email, password })).unwrap();
+    } catch (err: unknown) {
+      const payload = err as { isServerError?: boolean } | undefined;
+      if (payload && !payload.isServerError) {
+        Alert.alert("Hiba", "Sikertelen regisztráció");
+      }
     }
+  }, [dispatch, values]);
 
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      router.push("/auth/login");
-    }, 1000);
-  }, [values]);
-
-  const handleNavigation = useCallback(() => {
-    router.push("/auth/login");
-  }, []);
+  const handleNavigation = handleNavigationButton;
 
   return (
     <RegisterScreen
@@ -44,3 +79,4 @@ export const RegisterContainer = () => {
 };
 
 export default RegisterContainer;
+//

@@ -16,10 +16,10 @@ export default StyleSheet.create({
   },
   input: {
     width: "100%",
-    minHeight: 44,
+    minHeight: Spacing[40],
     borderColor: Colors.border,
-    borderWidth: 1,
-    borderRadius: 8,
+    borderWidth: Spacing[1],
+    borderRadius: Spacing[8],
     paddingHorizontal: Spacing[16],
     paddingVertical: Spacing[8],
     fontSize: FontSize.md,
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.white,
   },
   inputMultiline: {
-    minHeight: 100,
+    minHeight: Spacing[100],
     textAlignVertical: "top",
   },
   errorText: {

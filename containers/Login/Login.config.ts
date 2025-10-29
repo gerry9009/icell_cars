@@ -7,5 +7,10 @@ export const config: FieldConfig[] = [
     placeholder: "email@pelda.hu",
     type: "email",
   },
-  { name: "password", label: "Jelszó", type: "password" },
+  {
+    name: "password",
+    label: "Jelszó",
+    type: "password",
+    placeholder: "********",
+  },
 ];
