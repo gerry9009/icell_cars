@@ -16,11 +16,7 @@ export const ListItem = ({ header, sub, onPress }: ListItemProps) => {
         <Text style={styles.header} numberOfLines={1}>
           {header}
         </Text>
-        {sub ? (
-          <Text style={styles.sub} numberOfLines={2}>
-            {sub}
-          </Text>
-        ) : null}
+        {sub ? <Text style={styles.sub}>{sub}</Text> : null}
       </View>
 
       <View style={styles.right} pointerEvents="none">

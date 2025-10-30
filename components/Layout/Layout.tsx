@@ -51,7 +51,6 @@ export const Layout = ({
 
       <ContentWrapper
         style={styles.content}
-        contentContainerStyle={scrollable && styles.scrollContentContainer}
         showsVerticalScrollIndicator={false}
       >
         {children}

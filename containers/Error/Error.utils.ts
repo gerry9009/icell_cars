@@ -1,4 +1,4 @@
-import { AppDispatch, clearError } from "@/store";
+import { AppDispatch, clearCarsApiError, clearError } from "@/store";
 import { User } from "@/types";
 import { router } from "expo-router";
 
@@ -10,6 +10,7 @@ export const handleBackNavigation = ({
   dispatch: AppDispatch;
 }) => {
   dispatch(clearError());
+  dispatch(clearCarsApiError());
   if (user) {
     router.replace("/(tabs)/home");
   } else {

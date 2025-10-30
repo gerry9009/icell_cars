@@ -18,7 +18,7 @@ export default StyleSheet.create({
   headerShadow: {
     height: Spacing[4],
     backgroundColor: Colors.border,
-    ...Shadows.bottom, // csak alul legyen árnyék
+    ...Shadows.bottom,
     zIndex: Spacing[2],
   },
   leftSection: {
@@ -40,9 +40,6 @@ export default StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding: Spacing[20],
-  },
-  scrollContentContainer: {
-    paddingBottom: Spacing[24],
+    paddingHorizontal: Spacing[20],
   },
 });

@@ -32,3 +32,25 @@ export const validateEmail = (
   if (!isEmail(value)) return "Érvénytelen email";
   return undefined;
 };
+
+export const formatHungarianDate = (iso?: string | null): string => {
+  if (!iso) return "";
+
+  const date = new Date(iso);
+  if (isNaN(date.getTime())) return iso;
+
+  try {
+    const fmt = new Intl.DateTimeFormat("hu-HU", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    return fmt.format(date);
+  } catch {
+    // Fallback
+    return date.toLocaleString("hu-HU");
+  }
+};

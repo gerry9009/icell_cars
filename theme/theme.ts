@@ -1,6 +1,6 @@
 // theme/theme.ts
 export const Colors = {
-  background: "#F9FAFB",
+  background: "#f9fbf9ff",
   primary: "#007AFF",
   textPrimary: "#1C1C1E",
   textSecondary: "#6C757D",
