@@ -1,17 +1,3 @@
-# icell_cars — React Native / Expo app
-
-This repository contains the icell_cars mobile application built with Expo, React Native and TypeScript. It uses Expo Router for file-based routing and Redux Toolkit + Firebase for authentication.
-
-This README expands the project's quick notes and keeps the original content intact (see the "Original notes" section at the end).
-
-## Quick links
-
-- Development builds: https://docs.expo.dev/develop/development-builds/introduction/
-- Android emulator: https://docs.expo.dev/workflow/android-studio-emulator/
-- iOS simulator: https://docs.expo.dev/workflow/ios-simulator/
-
-## Prerequisites
-
 # icell_cars — React Native / Expo alkalmazás
 
 Ez a tároló az icell_cars mobilalkalmazást tartalmazza, amely Expo, React Native és TypeScript használatával készült. A fájl-alapú routingot az Expo Router és az állapotkezelést a Redux Toolkit biztosítja; a hitelesítés Firebase-en keresztül történik.
@@ -37,8 +23,6 @@ Ez a README kibővíti a projekt jegyzeteit, és az eredeti tartalmat változtat
 
 ```bash
 npm install
-# vagy
-# yarn install
 ```
 
 2. Native build (ha szükséges a natív projektek előállítása / prebuild)
