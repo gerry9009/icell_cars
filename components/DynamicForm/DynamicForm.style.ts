@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   container: {
     width: "100%",
+    marginVertical: Spacing[16],
   },
   field: {
     marginBottom: Spacing[16],

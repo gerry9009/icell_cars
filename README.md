@@ -1,50 +1,115 @@
-# Welcome to your Expo app 👋
+# icell_cars — React Native / Expo app
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This repository contains the icell_cars mobile application built with Expo, React Native and TypeScript. It uses Expo Router for file-based routing and Redux Toolkit + Firebase for authentication.
 
-## Get started
+This README expands the project's quick notes and keeps the original content intact (see the "Original notes" section at the end).
 
-1. Install dependencies
+## Quick links
 
-   ```bash
-   npm install
-   ```
+- Development builds: https://docs.expo.dev/develop/development-builds/introduction/
+- Android emulator: https://docs.expo.dev/workflow/android-studio-emulator/
+- iOS simulator: https://docs.expo.dev/workflow/ios-simulator/
 
-2. Start the app
+## Prerequisites
 
-   ```bash
-   npx expo start
-   ```
+# icell_cars — React Native / Expo alkalmazás
 
-In the output, you'll find options to open the app in a
+Ez a tároló az icell_cars mobilalkalmazást tartalmazza, amely Expo, React Native és TypeScript használatával készült. A fájl-alapú routingot az Expo Router és az állapotkezelést a Redux Toolkit biztosítja; a hitelesítés Firebase-en keresztül történik.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Ez a README kibővíti a projekt jegyzeteit, és az eredeti tartalmat változtatás nélkül megtartja a végén található "Eredeti jegyzetek" blokkban.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Gyors linkek
 
-## Get a fresh project
+- Development builds: https://docs.expo.dev/develop/development-builds/introduction/
+- Android emulátor: https://docs.expo.dev/workflow/android-studio-emulator/
+- iOS szimulátor: https://docs.expo.dev/workflow/ios-simulator/
 
-When you're ready, run:
+## Előfeltételek
+
+- Node.js (ajánlott LTS verzió)
+- Xcode (iOS szimulátorhoz, macOS)
+- Android Studio (Android emulátorhoz)
+- CocoaPods (iOS natív függőségekhez)
+
+## Telepítés
+
+1. Függőségek telepítése
 
 ```bash
-npm run reset-project
+npm install
+# vagy
+# yarn install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Native build (ha szükséges a natív projektek előállítása / prebuild)
 
-## Learn more
+```bash
+npm run build
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Környezeti változók
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Hozd létre a projekt gyökérkönyvtárában a `.env` fájlt, amely a szükséges kulcsokat tartalmazza (példa az eredeti jegyzeteknél). Az alkalmazás a Firebase és egyéb publikus API kulcsokat innen olvassa.
 
-## Join the community
+## Elérhető parancsok
 
-Join our community of developers creating universal apps.
+A `package.json`-ban található hasznos parancsok:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npm run start        # expo start (Metro)
+npm run dev:ios      # expo run:ios (build+run iOS szimulátoron/eszközön)
+npm run dev:android  # expo run:android (build+run Android emulátoron/eszközön)
+npm run web          # web mód
+npm run lint         # lint futtatása (expo lint)
+```
+
+Ha furcsa runtime hibák vannak, érdemes törölni a Metro cache-t:
+
+```bash
+npx expo start -c
+```
+
+TypeScript ellenőrzés futtatása:
+
+```bash
+npx tsc --noEmit
+```
+
+## Az alkalmazás futtatása
+
+- iOS (macOS + Xcode):
+
+```bash
+npm run dev:ios
+```
+
+- Android:
+
+```bash
+npm run dev:android
+```
+
+Vagy futtasd `npm start`-tal, majd nyisd meg az alkalmazást Expo Go-ban vagy a Dev Clientben a beállításaidnak megfelelően.
+
+## Projektszerkezet (magas szint)
+
+Fő mappák és felelősségek röviden:
+
+```
+app/         — Expo Router útvonalak és root layout (app/_layout.tsx)
+components/  — Újrahasználható UI komponensek (Button, DynamicForm, Layout, stb.)
+containers/  — Üzleti logikát megvalósító konténerek (store-hoz kapcsolódás, thunkok, navigation)
+screens/     — Prezentációs képernyők (UI only, props-ok a konténerektől)
+services/    — 3rd-party integrációk (firebase config, api kliens)
+store/       — Redux szeletek, thunkok és szelektorok
+hooks/       — Egyedi hookok (pl. típusos useAppDispatch/useAppSelector)
+theme/       — Theme tokenek (Colors, Spacing, FontSize, Shadows)
+types/       — Megosztott TypeScript típusok
+```
+
+Az architektúra célja az UI és a logika szétválasztása: a konténerek kezelik az állapotot és mellékhatásokat, a képernyők csak a megjelenítésért felelősek.
+
+## Hitelesítés
+
+- Firebase Auth van használatban a `firebase` SDK-val.
+- A Redux Toolkit kezeli az auth állapotot aszinkron thunkokkal (`login`, `register`, `logout`) a `store/auth` alatt.
